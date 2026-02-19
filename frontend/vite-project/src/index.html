@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transparent Chat - Intelligent Confidence-Aware Dialogue</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- Left Pane: Chat Interface -->
+        <div class="left-pane">
+            <div class="chat-header">
+                <h1>Transparent Chat</h1>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="message-item assistant">
+                    <div class="message-bubble">
+                        <p>Welcome to Transparent Chat! I'm your AI assistant. Ask me anything, and I'll transparently show you my confidence level and reasoning for every response.</p>
+                    </div>
+                    <div class="message-meta">
+                        <span class="confidence-badge">Confidence: High (0.95)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input-area">
+                <textarea 
+                    id="inputMessage"
+                    class="input-textarea"
+                    placeholder="Ask anything, and I'll explain my reasoning..."
+                    rows="3"
+                ></textarea>
+                <button id="sendBtn" class="send-button">Send</button>
+            </div>
+        </div>
+
+        <!-- Right Pane: Insights Panel -->
+        <div class="right-pane">
+            <div class="insights-header">
+                <h2><span class="insights-icon">🔮</span> Insights Panel</h2>
+            </div>
+
+            <!-- Section A: Persona Customization -->
+            <div class="panel-section">
+                <h3 class="section-title">Persona Setup</h3>
+                <form id="personaForm" class="persona-form">
+                    <div class="form-group">
+                        <label for="roleInput">Role</label>
+                        <select 
+                            id="roleInput"
+                            class="role-select"
+                        >
+                            <option value="General Assistant">General Assistant</option>
+                            <option value="Python Mentor">Python Mentor</option>
+                            <option value="JavaScript Expert">JavaScript Expert</option>
+                            <option value="Tech Advisor">Tech Advisor</option>
+                            <option value="Writing Coach">Writing Coach</option>
+                            <option value="Math Tutor">Math Tutor</option>
+                            <option value="Research Assistant">Research Assistant</option>
+                            <option value="Code Reviewer">Code Reviewer</option>
+                            <option value="Creative Writer">Creative Writer</option>
+                            <option value="Business Consultant">Business Consultant</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="toneInput">Tone</label>
+                        <select id="toneInput">
+                            <option value="friendly">Friendly</option>
+                            <option value="formal">Formal</option>
+                            <option value="strict">Strict</option>
+                            <option value="casual">Casual</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="personalityInput">Personality</label>
+                        <textarea 
+                            id="personalityInput"
+                            placeholder="Describe your ideal assistant personality..."
+                            rows="2"
+                        ></textarea>
+                    </div>
+                    <button type="button" id="updatePersonaBtn" class="btn-primary">Update Persona</button>
+                </form>
+            </div>
+
+            <!-- Section B: Real-Time Trust Calibration -->
+            <div class="panel-section">
+                <h3 class="section-title">Trust Calibration</h3>
+                <div class="trust-calibration">
+                    <div class="confidence-display">
+                        <div class="confidence-circle">
+                            <div class="confidence-value" id="confidenceValue">--</div>
+                            <div class="confidence-label">Confidence (%)</div>
+                        </div>
+                        <div class="confidence-bar-container">
+                            <div class="confidence-bar" id="confidenceBar" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="confidence-explanation">
+                        <label>Reasoning</label>
+                        <p id="confidenceReason">Awaiting first response...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section C: Cognitive Contextualization -->
+            <div class="panel-section">
+                <h3 class="section-title">Topic Flow & Stats</h3>
+                <div class="topic-flow">
+                    <div class="topic-keywords">
+                        <label>Key Topics</label>
+                        <div id="topicList" class="topic-list">
+                            <span class="topic-tag">Welcome</span>
+                        </div>
+                    </div>
+                    <div class="session-stats">
+                        <label>Session Stats</label>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-label">Total Turns</span>
+                                <span class="stat-value" id="totalTurns">1</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Avg Confidence</span>
+                                <span class="stat-value" id="avgConfidence">95%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+{
+	"name": "frontend-legacy",
+	"version": "0.0.0",
+	"description": "Deprecated legacy frontend; active app is in frontend/vite-project"
+}

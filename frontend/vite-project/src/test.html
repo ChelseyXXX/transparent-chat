@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .box {
+            background: linear-gradient(135deg, #6c63ff 0%, #4f46e5 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #6c63ff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #5551e5;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Transparent Chat - Test Page</h1>
+        <p>This is a test page to verify the UI is loading correctly.</p>
+    </div>
+    
+    <textarea placeholder="Test textarea..."></textarea>
+    <button>Send</button>
+    
+    <p>If you can see the purple gradient box, button, and textarea above, then the styles are working correctly!</p>
+    
+    <script>
+        console.log("Test page loaded successfully!");
+        document.querySelector('button').addEventListener('click', function() {
+            alert('Button works!');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Register</title>
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;padding:24px}
+    form{max-width:420px}
+    input,button{width:100%;padding:8px;margin:6px 0;box-sizing:border-box}
+    .error{color:#c00}
+    .success{color:#080}
+  </style>
+</head>
+<body>
+  <!-- Legacy frontend placeholder. The active frontend is in frontend/vite-project -->
+  <h2>Deprecated. See frontend/vite-project.</h2>
+  <form id="regForm">
+    <input id="username" name="username" placeholder="Username (min 3 chars)" required minlength="3" />
+    <input id="email" name="email" type="email" placeholder="Email" required />
+    <input id="password" name="password" type="password" placeholder="Password (min 6 chars)" required minlength="6" />
+    <input id="password2" name="password2" type="password" placeholder="Confirm password" required minlength="6" />
+    <div id="msg" role="status"></div>
+    <button type="submit">Register</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('regForm');
+    const msg = document.getElementById('msg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.textContent = '';
+      msg.className = '';
+
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const password2 = document.getElementById('password2').value;
+
+      if (password !== password2) {
+        msg.textContent = 'Passwords do not match.';
+        msg.className = 'error';
+        return;
+      }
+
+      try {
+        // If frontend served from different origin, change URL to full backend address, e.g. http://localhost:8000/register
+        const res = await fetch('/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, email, password })
+        });
+
+        if (res.status === 201) {
+          const data = await res.json();
+          msg.textContent = 'Registration successful. ID: ' + data.id;
+          msg.className = 'success';
+          form.reset();
+        } else {
+          const err = await res.json().catch(()=>({detail:'Unable to parse error'}));
+          msg.textContent = err.detail || (err.error || JSON.stringify(err));
+          msg.className = 'error';
+        }
+      } catch (error) {
+        msg.textContent = 'Network error: ' + error.message;
+        msg.className = 'error';
+      }
+    });
+  </script>
+</body>
+</html>
