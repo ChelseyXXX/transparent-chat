@@ -1,8 +1,9 @@
 import axios from "axios";
 
-// Use port 8000 where FastAPI/uvicorn runs in development
+// Use env-configurable API base URL; default to local dev.
+const baseURL = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
 const api = axios.create({
-  baseURL: "http://127.0.0.1:8000",
+  baseURL,
 });
 
 /**
@@ -24,7 +25,7 @@ export async function sendMessageStreaming(content, persona, onChunk, messages =
 
   console.log('[backend.js] Sending payload with messages:', messages ? messages.length : 0);
 
-  const response = await fetch("http://127.0.0.1:8000/chat", {
+  const response = await fetch(`${baseURL}/chat`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

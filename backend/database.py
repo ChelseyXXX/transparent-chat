@@ -1,5 +1,6 @@
 import os
 import sqlite3
+from typing import Optional
 from passlib.context import CryptContext
 
 # Use absolute path so DB is consistent no matter where uvicorn is started

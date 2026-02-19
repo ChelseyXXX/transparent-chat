@@ -48,3 +48,14 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.bak
+*.backup
+*.backup_*
+
+# Database files (exclude from version control)
+*.db
+*.sqlite
+*.sqlite3
+
+# Deployment backups
+backend/.env.backup
+backend/venv/
