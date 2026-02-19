@@ -392,8 +392,8 @@ class LinguisticCalibrator:
         }
 
 
-# Export a global instance
-calibrator = LinguisticCalibrator()
+# Export a global instance (lazy-initialized)
+calibrator = None
 
 
 def evaluate_confidence(thinking_process: str) -> Dict:
@@ -402,6 +402,9 @@ def evaluate_confidence(thinking_process: str) -> Dict:
     Legacy function for backward compatibility.
     Use analyze_response() for new structured analysis.
     """
+    global calibrator
+    if calibrator is None:
+        calibrator = LinguisticCalibrator()
     return calibrator.evaluate_confidence(thinking_process)
 
 
@@ -428,6 +431,9 @@ def analyze_response(
         - summary: one-sentence explanation
         - markers: list of TrustMarker objects
     """
+    global calibrator
+    if calibrator is None:
+        calibrator = LinguisticCalibrator()
     return calibrator.judge_analyze_response(
         user_question=user_question,
         assistant_answer=assistant_answer,
